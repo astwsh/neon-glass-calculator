@@ -151,20 +151,13 @@ button:focus-visible {
   -webkit-backdrop-filter: blur(25px);
 }
 
-/* Top Toolbar */
+/* Minimal Top Toolbar with History button */
 .calc-toolbar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 2px 4px 8px;
-  margin-bottom: 4px;
-}
-
-.toolbar-left,
-.toolbar-right {
-  display: flex;
-  align-items: center;
-  gap: 8px;
+  justify-content: flex-end;
+  padding: 2px 2px 6px;
+  margin-bottom: 2px;
 }
 
 .tool-btn {
@@ -191,36 +184,6 @@ button:focus-visible {
   transform: scale(0.93);
 }
 
-.pill-btn {
-  padding: 4px 10px;
-  border-radius: 20px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-  gap: 5px;
-}
-
-.chevron-icon {
-  width: 14px;
-  height: 14px;
-  transition: transform 0.25s ease;
-}
-
-.calculator.scientific-open .chevron-icon {
-  transform: rotate(180deg);
-}
-
-.badge-pill {
-  padding: 3px 7px;
-  border-radius: 12px;
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.6px;
-  color: var(--cyan);
-  background: rgba(39, 217, 237, 0.12);
-  border: 1px solid rgba(39, 217, 237, 0.25);
-}
-
 .icon-btn {
   width: 32px;
   height: 32px;
@@ -233,17 +196,11 @@ button:focus-visible {
   stroke: currentColor;
 }
 
-.tool-btn.active-muted {
-  color: #f472b6;
-  border-color: rgba(244, 114, 182, 0.35);
-  background: rgba(244, 114, 182, 0.12);
-}
-
 /* Calculator Screen Display */
 .display {
   position: relative;
   min-height: 80px;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
   padding: 10px 14px 8px;
   display: flex;
   flex-direction: column;
@@ -325,27 +282,44 @@ button:focus-visible {
   text-shadow: 0 0 15px rgba(248, 113, 113, 0.4);
 }
 
-/* Drawer Handle Bar (Chevron matching Google Calculator) */
-.drawer-handle {
+/* Shifted Showing Arrow (Aligned to left above first column √) */
+.drawer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 2px 0 6px;
   width: 100%;
-  height: 18px;
+}
+
+.drawer-handle {
+  width: calc((100% - 18px) / 4);
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: rgba(204, 232, 240, 0.45);
+  color: rgba(204, 232, 240, 0.65);
   cursor: pointer;
-  margin-bottom: 4px;
-  transition: color 0.2s ease;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  transition: all 0.2s ease;
   user-select: none;
 }
 
 .drawer-handle:hover {
   color: var(--cyan);
+  border-color: rgba(39, 217, 237, 0.45);
+  background: rgba(39, 217, 237, 0.12);
+  box-shadow: 0 0 10px rgba(39, 217, 237, 0.25);
+}
+
+.drawer-handle:active {
+  transform: scale(0.92);
 }
 
 .drawer-chevron {
-  width: 18px;
-  height: 18px;
+  width: 17px;
+  height: 17px;
   transition: transform 0.25s ease;
 }
 
@@ -701,7 +675,6 @@ button:focus-visible {
   .key,
   .history-back,
   .scientific-keys,
-  .chevron-icon,
   .drawer-chevron {
     transition: none !important;
   }

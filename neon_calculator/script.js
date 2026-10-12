@@ -85,6 +85,7 @@ function playClickSound(freq = 520) {
 }
 
 function updateSoundUI() {
+  if (!soundToggle || !iconSoundOn || !iconSoundOff) return;
   if (isSoundEnabled) {
     iconSoundOn.hidden = false;
     iconSoundOff.hidden = true;
@@ -98,12 +99,14 @@ function updateSoundUI() {
   }
 }
 
-soundToggle.addEventListener("click", () => {
-  isSoundEnabled = !isSoundEnabled;
-  localStorage.setItem("neon_calc_sound", String(isSoundEnabled));
-  updateSoundUI();
-  if (isSoundEnabled) playClickSound(640);
-});
+if (soundToggle) {
+  soundToggle.addEventListener("click", () => {
+    isSoundEnabled = !isSoundEnabled;
+    localStorage.setItem("neon_calc_sound", String(isSoundEnabled));
+    updateSoundUI();
+    if (isSoundEnabled) playClickSound(640);
+  });
+}
 
 /* -------------------------------
    DISPLAY & FORMATTING
@@ -158,19 +161,23 @@ function setScientificDrawer(open) {
   }
 }
 
-modeToggle.addEventListener("click", () => {
-  playClickSound();
-  setScientificDrawer(!isScientificOpen);
-});
+if (modeToggle) {
+  modeToggle.addEventListener("click", () => {
+    playClickSound();
+    setScientificDrawer(!isScientificOpen);
+  });
+}
 
-chevronDrawerBtn.addEventListener("click", () => {
-  playClickSound();
-  setScientificDrawer(!isScientificOpen);
-});
+if (chevronDrawerBtn) {
+  chevronDrawerBtn.addEventListener("click", () => {
+    playClickSound();
+    setScientificDrawer(!isScientificOpen);
+  });
+}
 
 function updateAngleUI() {
-  angleBadge.textContent = angleMode.toUpperCase();
-  angleToggle.textContent = angleMode === "deg" ? "Deg" : "Rad";
+  if (angleBadge) angleBadge.textContent = angleMode.toUpperCase();
+  if (angleToggle) angleToggle.textContent = angleMode === "deg" ? "Deg" : "Rad";
 }
 
 angleToggle.addEventListener("click", () => {

@@ -21,59 +21,21 @@
 
       <div class="calculator-content">
 
-        <!-- Top Status Bar & Controls -->
+        <!-- Top Header: Minimal with History button -->
         <header class="calc-toolbar">
-          <div class="toolbar-left">
-            <button
-              id="mode-toggle"
-              class="tool-btn pill-btn"
-              type="button"
-              aria-label="Toggle Scientific Mode"
-              title="Toggle Scientific Mode"
-            >
-              <span class="mode-text">Sci</span>
-              <svg class="chevron-icon" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-            <span id="angle-badge" class="badge-pill" title="Current angle unit">DEG</span>
-          </div>
-
-          <div class="toolbar-right">
-            <button
-              id="sound-toggle"
-              class="tool-btn icon-btn"
-              type="button"
-              aria-label="Toggle Sound"
-              title="Toggle Sound Effects"
-            >
-              <!-- Sound On Icon -->
-              <svg id="icon-sound-on" viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M11 5L6 9H2v6h4l5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-              <!-- Sound Muted Icon -->
-              <svg id="icon-sound-off" viewBox="0 0 24 24" aria-hidden="true" hidden>
-                <path d="M11 5L6 9H2v6h4l5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                <line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-              </svg>
-            </button>
-
-            <button
-              id="history-toggle"
-              class="tool-btn icon-btn"
-              type="button"
-              aria-label="Open calculation history"
-              title="History"
-            >
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M3 12a9 9 0 1 0 2.64-6.36L3 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M3 3v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
-          </div>
+          <button
+            id="history-toggle"
+            class="tool-btn icon-btn"
+            type="button"
+            aria-label="Open calculation history"
+            title="History"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M3 12a9 9 0 1 0 2.64-6.36L3 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M3 3v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
         </header>
 
         <!-- Main Calculator View -->
@@ -85,12 +47,14 @@
             <output id="screen" class="screen" aria-live="polite">0</output>
           </div>
 
-          <!-- Scientific Drawer Toggle Handle (Chevron bar matching Google Calculator) -->
-          <button id="chevron-drawer-btn" class="drawer-handle" type="button" aria-label="Expand or collapse scientific keypad">
-            <svg class="drawer-chevron" viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
+          <!-- Shifted Showing Arrow (Chevron Drawer Handle aligned to the left above √) -->
+          <div class="drawer-bar">
+            <button id="chevron-drawer-btn" class="drawer-handle" type="button" aria-label="Expand or collapse scientific keypad" title="Toggle Scientific Keypad">
+              <svg class="drawer-chevron" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
 
           <!-- Keypad Grid -->
           <div class="keys-container">
