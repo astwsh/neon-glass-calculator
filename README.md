@@ -1,6 +1,9 @@
 # Neon Glass Scientific Calculator
 
+> 🚀 **Live Web App**: [https://astwsh.github.io/neon-glass-calculator/](https://astwsh.github.io/neon-glass-calculator/)
+
 A futuristic, high-precision Scientific Calculator crafted with cyber neon glassmorphism aesthetics, responsive touch controls, tactile Web Audio feedback, interactive calculation history, and complete trigonometric & algebraic functions.
+
 
 ![Neon Glass Scientific Calculator](favicon.svg)
 
