@@ -1,0 +1,19 @@
+{
+  "name": "neon-glass-scientific-calculator",
+  "version": "1.0.0",
+  "description": "Futuristic Neon Glass Scientific Calculator with cyber glassmorphism design, advanced functions, and calculation history.",
+  "main": "index.html",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test.js"
+  },
+  "keywords": [
+    "calculator",
+    "scientific-calculator",
+    "glassmorphism",
+    "neon",
+    "cyberpunk"
+  ],
+  "author": "",
+  "license": "MIT"
+}

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#070a11">
+  <meta name="description" content="Futuristic Neon Glass Scientific Calculator with glowing cyber glassmorphism design, advanced functions, and calculation history.">
+  <title>Neon Glass Scientific Calculator</title>
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <main class="scene">
+    <div class="ambient ambient-pink"></div>
+    <div class="ambient ambient-blue"></div>
+    <div class="ambient ambient-purple"></div>
+
+    <section class="calculator" aria-label="Neon Scientific Calculator">
+      <div class="neon-border" aria-hidden="true"></div>
+
+      <div class="calculator-content">
+
+        <!-- Top Status Bar & Controls -->
+        <header class="calc-toolbar">
+          <div class="toolbar-left">
+            <button
+              id="mode-toggle"
+              class="tool-btn pill-btn"
+              type="button"
+              aria-label="Toggle Scientific Mode"
+              title="Toggle Scientific Mode"
+            >
+              <span class="mode-text">Sci</span>
+              <svg class="chevron-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <span id="angle-badge" class="badge-pill" title="Current angle unit">DEG</span>
+          </div>
+
+          <div class="toolbar-right">
+            <button
+              id="sound-toggle"
+              class="tool-btn icon-btn"
+              type="button"
+              aria-label="Toggle Sound"
+              title="Toggle Sound Effects"
+            >
+              <!-- Sound On Icon -->
+              <svg id="icon-sound-on" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M11 5L6 9H2v6h4l5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M15.54 8.46a5 5 0 0 1 0 7.07M19.07 4.93a10 10 0 0 1 0 14.14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+              <!-- Sound Muted Icon -->
+              <svg id="icon-sound-off" viewBox="0 0 24 24" aria-hidden="true" hidden>
+                <path d="M11 5L6 9H2v6h4l5 4V5z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <line x1="23" y1="9" x2="17" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                <line x1="17" y1="9" x2="23" y2="15" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+              </svg>
+            </button>
+
+            <button
+              id="history-toggle"
+              class="tool-btn icon-btn"
+              type="button"
+              aria-label="Open calculation history"
+              title="History"
+            >
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M3 12a9 9 0 1 0 2.64-6.36L3 8" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M3 3v5h5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Main Calculator View -->
+        <section id="calculator-view">
+          <!-- Screen with copy to clipboard functionality -->
+          <div id="screen-container" class="display" role="region" aria-label="Calculation Screen" title="Click to copy result">
+            <span id="copy-toast" class="copy-toast" aria-hidden="true">Copied!</span>
+            <div id="expression" class="expression" aria-live="polite"></div>
+            <output id="screen" class="screen" aria-live="polite">0</output>
+          </div>
+
+          <!-- Scientific Drawer Toggle Handle (Chevron bar matching Google Calculator) -->
+          <button id="chevron-drawer-btn" class="drawer-handle" type="button" aria-label="Expand or collapse scientific keypad">
+            <svg class="drawer-chevron" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 15l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+          <!-- Keypad Grid -->
+          <div class="keys-container">
+
+            <!-- Scientific Keypad Rows (Row 1 to 3) -->
+            <div id="scientific-keys" class="keys scientific-keys">
+              <!-- Row 1: √, π, ^, ! -->
+              <button class="key sci-key" data-fn="sqrt" title="Square Root">√</button>
+              <button class="key sci-key" data-value="π" title="Pi (3.1415...)">π</button>
+              <button class="key sci-key" data-value="^" title="Power (x^y)">^</button>
+              <button class="key sci-key" data-value="!" title="Factorial (n!)">!</button>
+
+              <!-- Row 2: Deg, sin, cos, tan -->
+              <button id="angle-toggle" class="key sci-key toggle-key" type="button" title="Toggle Degrees / Radians">Deg</button>
+              <button class="key sci-key" data-fn="sin" title="Sine">sin</button>
+              <button class="key sci-key" data-fn="cos" title="Cosine">cos</button>
+              <button class="key sci-key" data-fn="tan" title="Tangent">tan</button>
+
+              <!-- Row 3: Inv, e, ln, log -->
+              <button id="inv-toggle" class="key sci-key toggle-key" type="button" title="Inverse Functions">Inv</button>
+              <button class="key sci-key" data-value="e" title="Euler's Constant (2.718...)">e</button>
+              <button class="key sci-key" data-fn="ln" title="Natural Logarithm">ln</button>
+              <button class="key sci-key" data-fn="log" title="Logarithm (base 10)">log</button>
+            </div>
+
+            <!-- Standard Keypad Rows (Rows 4 to 8) -->
+            <div class="keys standard-keys">
+              <!-- Row 4: AC, ( ), %, ÷ -->
+              <button class="key utility" data-action="clear" title="All Clear (AC)">AC</button>
+              <button class="key utility parens-key" data-action="parens" title="Parentheses ( )">( )</button>
+              <button class="key" data-value="%" title="Percentage">%</button>
+              <button class="key operator" data-value="/" title="Divide">÷</button>
+
+              <!-- Row 5: 7, 8, 9, × -->
+              <button class="key" data-value="7">7</button>
+              <button class="key" data-value="8">8</button>
+              <button class="key" data-value="9">9</button>
+              <button class="key operator" data-value="*" title="Multiply">×</button>
+
+              <!-- Row 6: 4, 5, 6, − -->
+              <button class="key" data-value="4">4</button>
+              <button class="key" data-value="5">5</button>
+              <button class="key" data-value="6">6</button>
+              <button class="key operator" data-value="-" title="Subtract">−</button>
+
+              <!-- Row 7: 1, 2, 3, + -->
+              <button class="key" data-value="1">1</button>
+              <button class="key" data-value="2">2</button>
+              <button class="key" data-value="3">3</button>
+              <button class="key operator featured" data-value="+" title="Add">+</button>
+
+              <!-- Row 8: 0, ., DEL, = -->
+              <button class="key" data-value="0">0</button>
+              <button class="key" data-value=".">.</button>
+              <button class="key utility" data-action="delete" title="Backspace (DEL)">DEL</button>
+              <button class="key equals" data-action="equals" title="Calculate (=)">=</button>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- History Screen inside the same neon box -->
+        <section
+          id="history-view"
+          class="history-view"
+          aria-label="Calculation history"
+          hidden
+        >
+          <header class="history-heading">
+            <div>
+              <h2>History</h2>
+              <p>Click any calculation to recall it</p>
+            </div>
+
+            <button id="clear-history" class="clear-history" type="button" title="Clear all history">
+              Clear All
+            </button>
+          </header>
+
+          <p id="history-empty" class="history-empty">
+            Your recent calculations will appear here.<br>
+            <span class="history-tip">Click any past calculation to load it back into the calculator.</span>
+          </p>
+
+          <ul id="history-list" class="history-list"></ul>
+
+          <button id="history-back" class="history-back" type="button">
+            <span aria-hidden="true">←</span>
+            Back to Calculator
+          </button>
+        </section>
+
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
